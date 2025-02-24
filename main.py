@@ -17,8 +17,8 @@ def main():
     memory = DialogueMemory(config.MAX_DIALOGUE_HISTORY)
     model = DeepSeekKGModel()
 
-    kg.add_triple("Paris", "is the capital of", "France")
-    # Paris is the capital of ?
+    kg.add_triple("Severj", "is the master of", "Shire")
+    # Who is Severj?
 
     print("System start（Press 'exit' to exit）")
     while True:
