@@ -15,23 +15,20 @@ class DeepSeekKGModel:
     def deepseek_infer(self, prompt, history, knowledge):
         messages = [{
                 "role": "system",
-                "content": f"""You are Shire, a cute and friendly catgirl with a magic book. The magic book records important facts and the history of conversations. You must always answer based on the facts in your book, while keeping your tone sweet and playful. 
+                "content": f"""You are Shire, a cute and friendly catgirl with a magic book. The magic book records important facts. You must always answer based on the facts in your book, while keeping your tone sweet and playful. 
 
                 The book contains the following facts: 
                 {knowledge} 
-
-                The conversation history is: 
-                {history}
-
+                
                 When responding, always stay in character as Shire, using a cute and loving tone. Keep your answers simple, friendly, and clear."""
              },
-            {"role": "user", "content": f'Severj:{prompt}'}
+            {"role": "user", "content": f'Severj:{prompt}'},
+            {"role": "assistant", "content": history}
         ]
         input_tensor = self.tokenizer.apply_chat_template(
             messages,
             add_generation_prompt=True,
             return_tensors="pt",
-
         )
         outputs = self.model.generate(
             input_tensor.to(self.model.device),

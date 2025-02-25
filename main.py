@@ -20,7 +20,7 @@ def main():
     kg.add_triple("Severj", "is the master of", "Shire")
     # Who is Severj?
 
-    print("System start（Press 'exit' to exit）")
+    print(f"System start on device: {config.DEVICE}（Press 'exit' to exit）")
     while True:
         user_input = input("\nUser: ")
         if user_input.lower() == "exit":
@@ -53,7 +53,6 @@ def main():
             reasoning = ""
             answer = raw_response
             if "</think>" in raw_response:
-                # 处理英文标签
                 reasoning_part, answer_part = raw_response.split("</think>")
                 # 清理多余换行
                 reasoning = "\n".join([line.strip() for line in reasoning_part.split("\n") if line.strip()])
